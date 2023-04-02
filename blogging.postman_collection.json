@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"email\":\"rahul@gmail.com\",\r\n\"password\":\"123@test\"\r\n}",
+							"raw": "{\r\n\"email\":\"ram@gmail.com\",\r\n\"password\":\"123@test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -46,7 +46,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"first_name\":\"Rahul\",\r\n    \"email\":\" rohiit@gmail.com\",\r\n    \"password\":\"123@test\"\r\n}",
+							"raw": "{\r\n    \"first_name\":\"Ram\",\r\n    \"last_name\":\"Nautiyal\",\r\n    \"email\":\" kris@gmail.com\",\r\n    \"password\":\"123@test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -54,7 +54,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/sign-up",
+							"raw": "http://localhost:3000/api/v1/users/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -64,7 +64,7 @@
 								"api",
 								"v1",
 								"users",
-								"sign-up"
+								""
 							]
 						}
 					},
@@ -76,18 +76,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create-new-todo",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/api/v1/todos/",
+							"raw": "http://localhost:3000/api/v1/users/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -96,8 +85,74 @@
 							"path": [
 								"api",
 								"v1",
-								"todos",
+								"users",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change-role",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/change-role/6429e772f4ad3868b9040dcf?role=admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"change-role",
+								"6429e772f4ad3868b9040dcf"
+							],
+							"query": [
+								{
+									"key": "role",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search-users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/search?search=\"kris\"",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"search"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "\"kris\""
+								}
 							]
 						}
 					},
@@ -130,21 +185,12 @@
 					"response": []
 				},
 				{
-					"name": "update-todo",
+					"name": "create-new-todo",
 					"request": {
-						"method": "PUT",
+						"method": "POST",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\":\"Go Gym\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/todos/6427d11d198ab5f3bf598c37",
+							"raw": "http://localhost:3000/api/v1/todos/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -154,7 +200,38 @@
 								"api",
 								"v1",
 								"todos",
-								"6427d11d198ab5f3bf598c37"
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-todo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"is_completed\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/todos/6429c9e7656077752ea70203",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todos",
+								"6429c9e7656077752ea70203"
 							]
 						}
 					},
@@ -166,7 +243,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/todos/6427d13a0cc2cb248d1173d3",
+							"raw": "http://localhost:3000/api/v1/todos/6429ce4d1ea6b4ad4c83cb5b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -176,7 +253,7 @@
 								"api",
 								"v1",
 								"todos",
-								"6427d13a0cc2cb248d1173d3"
+								"6429ce4d1ea6b4ad4c83cb5b"
 							]
 						}
 					},
@@ -188,7 +265,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/todos/6427d11d198ab5f3bf598c37",
+							"raw": "http://localhost:3000/api/v1/todos/6429ce4d1ea6b4ad4c83cb5b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -198,7 +275,7 @@
 								"api",
 								"v1",
 								"todos",
-								"6427d11d198ab5f3bf598c37"
+								"6429ce4d1ea6b4ad4c83cb5b"
 							]
 						}
 					},
@@ -268,7 +345,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\":\"1\",\r\n    \"description\":\"Rahul post\"\r\n}",
+							"raw": "{\r\n    \"title\":\"1 Rahul admin\",\r\n    \"description\":\"Rahul post 1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -299,7 +376,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\":\"Go Gym\"\r\n}",
+							"raw": "{\r\n    \"description\":\" admin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -307,7 +384,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/posts/6427d11d198ab5f3bf598c37",
+							"raw": "http://localhost:3000/api/v1/posts/6429d658df2e02b0a8f34f3c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -317,7 +394,7 @@
 								"api",
 								"v1",
 								"posts",
-								"6427d11d198ab5f3bf598c37"
+								"6429d658df2e02b0a8f34f3c"
 							]
 						}
 					},
@@ -329,7 +406,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/posts/6427d13a0cc2cb248d1173d3",
+							"raw": "http://localhost:3000/api/v1/posts/6429d658df2e02b0a8f34f3c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -339,7 +416,7 @@
 								"api",
 								"v1",
 								"posts",
-								"6427d13a0cc2cb248d1173d3"
+								"6429d658df2e02b0a8f34f3c"
 							]
 						}
 					},
@@ -351,7 +428,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/posts/6427d11d198ab5f3bf598c37",
+							"raw": "http://localhost:3000/api/v1/posts/6429ce4d1ea6b4ad4c83cb5b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -361,7 +438,7 @@
 								"api",
 								"v1",
 								"posts",
-								"6427d11d198ab5f3bf598c37"
+								"6429ce4d1ea6b4ad4c83cb5b"
 							]
 						}
 					},

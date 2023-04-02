@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { signUp, signIn, getAllUsers } = require("./usersService");
+const { signUp, signIn, getAllUsers, searchUser, changeRole } = require("./usersService");
 const auth = require("../authentication/jwtAuth");
 const { pagination } = require("../common/pagination");
 const userModal = require("./usersModel");
@@ -114,6 +114,40 @@ router.post("/", signUp);
  *         description: Some server error
  */
 router.post("/login", signIn);
+
+/**
+ * @swagger
+ * /users/search?search:
+ *   get:
+ *     summary: Returns the list of all the users for which you will search  
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: The list of the users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ */
+router.get("/search", auth, searchUser);
+
+/**
+ * @swagger
+ * /users/change-role/{user_id}?role="admin || user":
+ *   get:
+ *     summary: Returns the list of all the users for which you will search  
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: The list of the users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ */
+router.put("/change-role/:id", auth, changeRole);
 // router.put('/:id', getUserById)
 // router.get('/:id', getUserById)
 

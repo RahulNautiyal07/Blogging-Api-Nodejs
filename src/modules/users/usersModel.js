@@ -53,6 +53,7 @@ let userSchema = new mongoose.Schema({
   
 
 });
+userSchema.index({ first_name : 'text', email : 'text', _id: 'text', role: 'text' });
 
 var userModal = mongoose.model("user", userSchema, "users");
 module.exports = userModal;
