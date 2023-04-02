@@ -52,7 +52,6 @@ const signIn = async (req, res) => {
     if (!user) throw new Error("This email is not exists");
     let doMatch = await bcrypt.compare(password, user.password);
     if (!doMatch) throw new Error("Email and Password is not correct");
-
     const payload = { userId: user._id };
     const token = await generateAccessToken(payload);
     setCookie(res,token);

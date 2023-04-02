@@ -14,6 +14,7 @@ let todoSchema = new mongoose.Schema({
   },
   description: {
     type: String,
+    trim: true,
   },
   user_id: {
     type: mongoose.Schema.Types.ObjectId,

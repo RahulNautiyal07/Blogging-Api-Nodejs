@@ -1,6 +1,5 @@
 const Post = require("./postsModel");
 const mongoose = require("mongoose");
-const logger = require("../../../logger");
 
 
 const getAllPosts = async (req, res) => {
@@ -12,7 +11,6 @@ const getAllPosts = async (req, res) => {
     res.status(200).json(res.paginatedData)
 
   } catch (e) {
-    logger.postError(e.message)
     res.status(200).json({ status: false, result: e.message });
   }
 };
@@ -27,7 +25,6 @@ const createPost = async (req, res) => {
       let newPost = await new Post({ title, description,user_id:user_id }).save();
       if (newPost) res.status(201).json({ status: true, result: newPost });
     } catch (e) {
-      logger.postError(e.message)
       res.status(200).json({ status: false, result: e.message });
     }
   } else res.status(200).json({ status: false, error: "Something is missing" });
@@ -42,7 +39,6 @@ const getPostById = async (req, res) => {
       res.status(200).json({ status: false, result: "Todo Not Found" });
     else res.status(200).json({ status: true, result: post });
   } catch (e) {
-    logger.postError(e.message)
     res.status(200).json({ status: false, result: e.message });
   }
 };
@@ -53,29 +49,35 @@ const updatePostById = async (req, res) => {
   if (title || description) {
     try {
       let user_id = req.userData._id;
+      let post = await Post.findById(id);
+      if(!post) throw new Error("Post not found");
+      if(!user_id.equals(post.user_id) && req.userData.role !== 'admin') throw new Error("You are not Authorised");
       let updatedPost = await Post.findOneAndUpdate(
         { _id: id, user_id: user_id },
         { $set: { title, description } }
       );
-      if (updatedPost)
-        res.status(200).json({ status: true, result: updatedPost });
+      if (updatedPost) res.status(200).json({ status: true, result: updatedPost });
+      else throw new Error("Failed to update.");    
     } catch (e) {
       res.status(200).json({ status: false, result: e.message });
     }
-  } else res.status(200).json({ status: false, error: "Title is missing" });
+  } else res.status(200).json({ status: false, error: "Data is missing" });
 };
 
 const deletePost = async (req, res) => {
   try {
     const id = req.params.id;
-    let post = await Post.findByIdAndDelete({ _id: id });
-    if (!post)
+    let user_id = req.userData._id;
+    let post = await Post.findById(id);
+    if(!post) throw new Error("Post not found");
+    if(!user_id.equals(post.user_id) && req.userData.role !== 'admin') throw new Error("You are not Authorised");
+    let deletedPost = await Post.findByIdAndDelete({ _id: id });
+    if (!deletedPost)
       res
         .status(200)
         .json({ status: false, result: "This post id is not registered." });
-    else res.status(200).json({ status: true, result: post });
+    else res.status(200).json({ status: true, result: deletedPost });
   } catch (e) {
-    logger.postError(e.message)
     res.status(200).json({ status: false, result: e.message });
   }
 };

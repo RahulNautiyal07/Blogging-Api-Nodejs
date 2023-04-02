@@ -1,4 +1,5 @@
 const Comment = require("./commentsModel");
+const Post = require("../posts/postsModel")
 
 const getAllComments = async (req, res) => {
   try {
@@ -16,8 +17,10 @@ const createComment = async (req, res) => {
   if (post_id && description) {
     try {
       let user_id = req.userData._id;
+      let post = await Post.findById(post_id);
+      if(!post) throw new Error("Please enter valid post_id");
       let newComment = await new Comment({
-        post_id: post_id,
+        post_id: post._id,
         description,
         user_id,
       }).save();
@@ -26,7 +29,7 @@ const createComment = async (req, res) => {
     } catch (e) {
       res.status(200).json({ status: false, result: e.message });
     }
-  } else res.status(200).json({ status: false, error: "Something is missing" });
+  } else res.status(200).json({ status: false, error: "post_id and description is required!" });
 };
 
 const getCommentByPostId = async (req, res) => {
@@ -35,7 +38,6 @@ const getCommentByPostId = async (req, res) => {
     let comment = await Comment.find({ post_id: id }).select(
       "description post_id user_id updated_at"
     );
-    console.log(comment, "new todo");
     if (!comment)
       res.status(200).json({ status: false, result: "Comments Not Found" });
     else res.status(200).json({ status: true, result: comment });
@@ -47,12 +49,16 @@ const getCommentByPostId = async (req, res) => {
 const deleteComment = async (req, res) => {
   try {
     const id = req.params.id;
-    let comment = await Comment.findByIdAndDelete({ _id: id });
-    if (!comment)
+    let user_id = req.userData._id;
+    let comment = await Comment.findById(id);
+    if(!comment) throw new Error("Comment not found");
+    if(!user_id.equals(comment.user_id) && req.userData.role !== 'admin') throw new Error("You are not Authorised");
+    let deletedComment = await Comment.findByIdAndDelete({ _id: id });
+    if (!deletedComment)
       res
         .status(200)
         .json({ status: false, result: "This comment id is not registered." });
-    else res.status(200).json({ status: true, result: comment });
+    else res.status(200).json({ status: true, result: deletedComment });
   } catch (e) {
     res.status(200).json({ status: false, result: e.message });
   }

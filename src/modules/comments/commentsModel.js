@@ -10,6 +10,7 @@ const opts = {
 let commentSchema = new mongoose.Schema({
   description: {
     type: String,
+    trim: true,
     required: [true, "No description provided"],
   },
   user_id: {

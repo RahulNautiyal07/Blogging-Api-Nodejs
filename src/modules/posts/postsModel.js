@@ -10,10 +10,12 @@ const opts = {
 let postSchema = new mongoose.Schema({
   title: {
     type: String,
+    trim: true,
     required: [true, "No name provided"],
   },
   description: {
     type: String,
+    trim: true,
     required: [true, "No description provided"],
   },
   user_id: {

@@ -1,3 +1,5 @@
+const { default: mongoose } = require("mongoose");
+const { findOne } = require("./todosModel");
 const Todo = require("./todosModel");
 
 const getAllTodos = async (req, res) => {
@@ -50,7 +52,6 @@ const getTodoById = async (req, res) => {
   try {
     const id = req.params.id;
     let todo = await Todo.findById({ _id: id });
-    console.log(todo, "new todo");
     if (!todo)
       res.status(200).json({ status: false, result: "Todo Not Found" });
     else res.status(200).json({ status: true, result: todo });
@@ -61,29 +62,37 @@ const getTodoById = async (req, res) => {
 
 const updateTodoById = async (req, res) => {
   const id = req.params.id;
-  const { title, description } = req.body;
-  if (title || description) {
+  const { title, description, is_completed } = req.body;
+  if (title || description || is_completed ) {
     try {
       let user_id = req.userData._id;
+      let todo = await Todo.findById(id);
+      if(!todo) throw new Error("Todo not found");
+      if(!user_id.equals(todo.user_id) && req.userData.role !== 'admin') throw new Error("You are not Authorised");
       let updatedTodo = await Todo.findOneAndUpdate(
         { _id: id, user_id: user_id },
-        { $set: { title, description } }
+        { $set: { title, description, is_completed } }
       );
       if (updatedTodo)
         res.status(200).json({ status: true, result: updatedTodo });
+      else throw new Error("Failed to update.");  
     } catch (e) {
       res.status(200).json({ status: false, result: e.message });
     }
-  } else res.status(200).json({ status: false, error: "Title is missing" });
+  } else res.status(200).json({ status: false, error: "Data is missin g" });
 };
 
 const deleteTodo = async (req, res) => {
   try {
     const id = req.params.id;
-    let todo = await Todo.findByIdAndDelete({ _id: id });
-    if (!todo)
+    let user_id = req.userData._id;
+    let todo = await Todo.findById(id);
+    if(!todo) throw new Error("Todo not found");
+    if(!user_id.equals(todo.user_id) && req.userData.role !== 'admin') throw new Error("You are not Authorised");
+    let deletedTodo = await Todo.findByIdAndDelete({ _id: id });
+    if (!deletedTodo)
       res.status(200).json({ status: false, result: "This todo id is not registered." });
-    else res.status(200).json({ status: true, result: todo });
+    else res.status(200).json({ status: true, result: deletedTodo });
   } catch (e) {
     res.status(200).json({ status: false, result: e.message });
   }

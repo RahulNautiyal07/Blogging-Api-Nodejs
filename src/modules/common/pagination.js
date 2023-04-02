@@ -8,7 +8,7 @@ exports.pagination = (model) => {
       limit = limit?parseInt(req.query.limit): 100;
       const offset =skip?parseInt(req.query.skip):0;
       
-      let filter = user_id && model.collection.collectionName  == 'todos' && role !=='admin' ?{user_id:{$ne: user_id}}:{};
+      let filter = user_id && model.collection.collectionName  == 'todos' && role !=='admin' ?{user_id:{$ne: user_id}, is_completed:false}:{};
       const modelCollection = await model.find(filter).skip(offset).limit(limit);
       const modelCollectionCount = await model.count(filter);
       const totalPages = Math.ceil(modelCollectionCount / limit);
