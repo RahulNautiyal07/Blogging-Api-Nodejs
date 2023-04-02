@@ -117,7 +117,7 @@ router.post("/login", signIn);
 
 /**
  * @swagger
- * /users/search?search:
+ * /users/search?search="searchString":
  *   get:
  *     summary: Returns the list of all the users for which you will search  
  *     tags: [Users]
@@ -134,7 +134,7 @@ router.get("/search", auth, searchUser);
 
 /**
  * @swagger
- * /users/change-role/{user_id}?role="admin || user":
+ * /users/change-role/{user_id}?role=admin || user:
  *   get:
  *     summary: Returns the list of all the users for which you will search  
  *     tags: [Users]
