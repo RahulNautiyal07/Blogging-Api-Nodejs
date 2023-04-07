@@ -60,7 +60,7 @@ const todoModal = require("./todosModel");
  *               type: array
  *               items:
  */
-router.get("/", auth,pagination(todoModal), getAllTodosExceptUser);
+router.get("/", auth, pagination(todoModal), getAllTodosExceptUser);
 
 /**
  * @swagger
@@ -85,7 +85,7 @@ router.get("/", auth,pagination(todoModal), getAllTodosExceptUser);
  *         description: The todo was not found
  */
 
-router.get("/:id", getTodoById);
+router.get("/:id", auth, getTodoById);
 
 /**
  * @swagger
@@ -187,7 +187,7 @@ router.delete("/:id",auth, deleteTodo);
  *         description: The todo was not found
  */
 
-router.get("/user-todos",auth, getUserTodos)
+router.get("/user/my-todos",auth, getUserTodos)
 
 /**
  * @swagger

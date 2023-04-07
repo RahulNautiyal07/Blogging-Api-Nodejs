@@ -8,7 +8,7 @@ const getAllComments = async (req, res) => {
     if (comments) res.status(200).json({ status: true, result: comments });
     else throw new Error("Please create Comments");
   } catch (e) {
-    res.status(204).json({ status: false, result: e.message });
+    res.status(200).json({ status: false, result: e.message });
   }
 };
 

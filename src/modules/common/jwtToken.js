@@ -3,15 +3,14 @@ const jwt = require("jsonwebtoken");
 const { accessToken, refreshToken } = config.get("jwt");
 
 const generateAccessToken = (payload, expiryTime = accessToken.time) => {
-  console.log(expiryTime,"expiryTime",accessToken)
   if (typeof payload == "object") {
     return new Promise((resolve, reject) => {
-      const secret = accessToken.secretKey
-      const options = {expiresIn: expiryTime, issuer: 'www.api.com'}
+      const secret = accessToken.secretKey;
+      const options = { expiresIn: expiryTime, issuer: "www.api.com" };
       jwt.sign(payload, secret, options, (err, token) => {
         if (err) {
-          console.log(err.message)
-          reject(err)
+          console.log(err.message);
+          reject(err);
           return;
         }
         resolve(token);
@@ -23,8 +22,14 @@ const generateAccessToken = (payload, expiryTime = accessToken.time) => {
 };
 
 const verifyAccessToken = (token) => {
-  if (token) return jwt.verify(token, accessToken.secretKey);
-  else throw new Error("JWT token not found");
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, accessToken.secretKey, (err, payload) => {
+      if (err) return reject(err);
+      const userId = payload.userId;
+      if (userId) return resolve(payload);
+      reject({message:"Unauthorized Request"});
+    });
+  });
 };
 
 const generateRefreshToken = (payload, expiryTime = refreshToken.time) => {
@@ -36,8 +41,15 @@ const generateRefreshToken = (payload, expiryTime = refreshToken.time) => {
 };
 
 const verifyRefreshToken = (token) => {
-  if (token) return jwt.verify(token, refreshToken.secretKey);
-  else throw new Error("JWT token not found");
+  if (token) throw new Error("JWT token not found");
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, refreshToken.secretKey, (err, payload) => {
+      if (err) return reject(err);
+      const userId = payload.userId;
+      if (userId) return resolve(payload);
+      reject({message:"Unauthorized Request"});
+    });
+  });
 };
 
 // const signRefreshhToken = (userId) => {
@@ -88,4 +100,9 @@ const verifyRefreshToken = (token) => {
 //     )
 //   })
 // }
-module.exports = { generateAccessToken, verifyAccessToken, generateRefreshToken, verifyRefreshToken };
+module.exports = {
+  generateAccessToken,
+  verifyAccessToken,
+  generateRefreshToken,
+  verifyRefreshToken,
+};

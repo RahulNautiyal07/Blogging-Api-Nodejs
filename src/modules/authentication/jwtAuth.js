@@ -1,33 +1,21 @@
-const config = require("config");
-const jwt = require("jsonwebtoken");
-const { accessToken } = config.get("jwt");
+const { verifyAccessToken } = require("../common/jwtToken");
 const User = require("../users/usersModel");
 
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
     try {
-      console.log(req.cookies.token,"token")
-      jwt.verify(
-        req.cookies.token,
-        accessToken.secretKey,
-        async function (err, decoded) {
-          if (err) {
-            console.log(err)
-            return res.status(401).json({
-              status: false,
-              message: "Unauthorised request",
-            });
-          } else {
-            console.log(decoded);
-            req.userData = await User.findById(decoded.userId).select("_id first_name last_name email is_active role")
-            next();
-          }
-        }
-      );
+      let token = req.cookies.token;
+      let decode = await verifyAccessToken(token);
+      console.log(decode,"user token")
+      if(!decode) throw new Error("Invalid Token");
+      let userData = await User.findById(decode.userId).select("_id first_name last_name email is_active role");
+      if(!userData) throw new Error("Invalid User request")
+      req.userData = userData
+      next();
     } catch (error) {
       res.status(401).json({
         status: false,
-        error: "Invalid tokenId",
+        result: error.message
       });
     }
   };

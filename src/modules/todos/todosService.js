@@ -9,11 +9,13 @@ const getAllTodos = async (req, res) => {
       if (users) res.status(200).json({ status: true, result: users });
       else throw new Error("Please create Todos");
     } catch (e) {
-      res.status(204).json({ status: false, result: e.message });
+      res.status(200).json({ status: false, result: e.message });
     }
   };
+
 const getAllTodosExceptUser = async (req, res) => {
   try {
+    console.log("user")
     // let userId = req.userData._id;
     // let users = await Todo.find({ user_id:{$ne: userId }}).populate("user_id","email")
     // if (users) res.status(200).json({ status: true, result: users });
@@ -24,14 +26,16 @@ const getAllTodosExceptUser = async (req, res) => {
   }
 };
 
+
 const getUserTodos = async (req, res) => {
     try {
       let userId = req.userData._id;
+      console.log(userId)
       let users = await Todo.find({ user_id: userId });
       if (users) res.status(200).json({ status: true, result: users });
       else throw new Error("Please create Todos");
     } catch (e) {
-      res.status(204).json({ status: false, result: e.message });
+      res.status(200).json({ status: false, result: e.message });
     }
   };
 
@@ -49,6 +53,7 @@ const createTodo = async (req, res) => {
 };
 
 const getTodoById = async (req, res) => {
+  console.log("Helll")
   try {
     const id = req.params.id;
     let todo = await Todo.findById({ _id: id });
