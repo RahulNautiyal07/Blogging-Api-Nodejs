@@ -151,8 +151,39 @@ router.put("/change-role/:id", auth, changeRole);
 // router.put('/:id', getUserById)
 // router.get('/:id', getUserById)
 
+
+/**
+ * @swagger
+* /users/refresh-token:
+*   post:
+*     summary: Returns new access-token with new refresh-token
+*     tags: [Users]
+*     responses:
+*       200:
+*         description: Returns new access-token with new refresh-token
+*         content:
+*           application/json:
+*             schema:
+*               type: array
+*               items:
+*/
 router.post('/refresh-token', refreshToken)
 
+/**
+ * @swagger
+* /users/logout:
+*   delete:
+*     summary: Deleting the user session
+*     tags: [Users]
+*     responses:
+*       200:
+*         description: Deleting the user session
+*         content:
+*           application/json:
+*             schema:
+*               type: array
+*               items:
+*/
 router.delete('/logout', auth, logout)
 
 module.exports = router;
