@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"email\":\"rahuln@gmail.com\",\r\n\"password\":\"123@test\"\r\n}",
+							"raw": "{\r\n\"email\":\"rama@gmail.com\",\r\n\"password\":\"123test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -46,7 +46,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"first_name\":\"Ram\",\r\n    \"last_name\":\"Nautiyal\",\r\n    \"email\":\" ram@gmail.com\",\r\n    \"password\":\"123@test\"\r\n}",
+							"raw": "{\r\n    \"first_name\":\"Ram\",\r\n    \"last_name\":\"Nautiyal\",\r\n    \"email\":\"rama@gmail.com\",\r\n    \"password\":\"123test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -153,6 +153,50 @@
 									"key": "search",
 									"value": "\"ram@\""
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign-new-access-token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/refresh-token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"logout"
 							]
 						}
 					},

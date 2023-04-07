@@ -1,24 +1,21 @@
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const { accessToken, refreshToken } = config.get("jwt");
+const client = require("../../db/redis_init");
 
 const generateAccessToken = (payload, expiryTime = accessToken.time) => {
-  if (typeof payload == "object") {
-    return new Promise((resolve, reject) => {
-      const secret = accessToken.secretKey;
-      const options = { expiresIn: expiryTime, issuer: "www.api.com" };
-      jwt.sign(payload, secret, options, (err, token) => {
-        if (err) {
-          console.log(err.message);
-          reject(err);
-          return;
-        }
-        resolve(token);
-      });
+  return new Promise((resolve, reject) => {
+    const secret = accessToken.secretKey;
+    const options = { expiresIn: expiryTime, issuer: "www.api.com" };
+    jwt.sign(payload, secret, options, (err, token) => {
+      if (err) {
+        console.log(err.message);
+        reject(err);
+        return;
+      }
+      resolve(token);
     });
-  } else {
-    throw new Error("JWT payload is not valid");
-  }
+  });
 };
 
 const verifyAccessToken = (token) => {
@@ -27,27 +24,42 @@ const verifyAccessToken = (token) => {
       if (err) return reject(err);
       const userId = payload.userId;
       if (userId) return resolve(payload);
-      reject({message:"Unauthorized Request"});
+      reject({ message: "Unauthorized Request" });
     });
   });
 };
 
 const generateRefreshToken = (payload, expiryTime = refreshToken.time) => {
-  if (typeof payload == "object") {
-    return jwt.sign(payload, refreshToken.secretKey, { expiresIn: expiryTime });
-  } else {
-    throw new Error("JWT payload is not valid");
-  }
+  return new Promise((resolve, reject) => {
+    const secret = refreshToken.secretKey;
+    const userId = payload.userId.toString();
+    console.log(userId);
+    const options = { expiresIn: expiryTime, issuer: "www.api.com" };
+    jwt.sign(payload, secret, options, (err, token) => {
+      if (err) return reject(err);
+      client
+        .set(userId, token, { EX: 365 * 24 * 60 * 30 })
+        .then((result) => {
+          if (!result) reject({message: "Token Not Found"});
+          return resolve(token);
+        })
+    });
+  });
 };
 
 const verifyRefreshToken = (token) => {
-  if (token) throw new Error("JWT token not found");
   return new Promise((resolve, reject) => {
     jwt.verify(token, refreshToken.secretKey, (err, payload) => {
       if (err) return reject(err);
       const userId = payload.userId;
-      if (userId) return resolve(payload);
-      reject({message:"Unauthorized Request"});
+      client
+        .get(userId)
+        .then((result) => {
+          console.log(result,"resuklr")
+          if (!result) return reject(err);
+          if (token === result) return resolve(userId);
+          reject({message: "Unauthorized request, Please Login again."});
+        })
     });
   });
 };

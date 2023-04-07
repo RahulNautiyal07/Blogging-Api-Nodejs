@@ -48,7 +48,7 @@ const PostModel = require("./postsModel");
  * /posts:
  *   get:
  *     summary: Returns the list of all the Posts
- *     tags: [Posts]
+ *     tags: [Posts] 
  *     responses:
  *       200:
  *         description: The list of the Posts

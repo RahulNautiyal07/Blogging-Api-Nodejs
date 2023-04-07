@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { signUp, signIn, getAllUsers, searchUser, changeRole } = require("./usersService");
+const { signUp, signIn, getAllUsers, searchUser, changeRole, refreshToken, logout } = require("./usersService");
 const auth = require("../authentication/jwtAuth");
 const { pagination } = require("../common/pagination");
 const userModal = require("./usersModel");
@@ -150,5 +150,9 @@ router.get("/search", auth, searchUser);
 router.put("/change-role/:id", auth, changeRole);
 // router.put('/:id', getUserById)
 // router.get('/:id', getUserById)
+
+router.post('/refresh-token', refreshToken)
+
+router.delete('/logout', auth, logout)
 
 module.exports = router;

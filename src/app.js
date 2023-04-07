@@ -1,4 +1,5 @@
 require("./db/mongo_init");
+require('./db/redis_init');
 const express = require("express");
 const dotenv = require("dotenv");
 const config = require("config");
