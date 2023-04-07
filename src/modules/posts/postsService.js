@@ -34,9 +34,9 @@ const getPostById = async (req, res) => {
   try {
     const id = req.params.id;
     let post = await Post.findById({ _id: id });
-    console.log(post, "new todo");
+    console.log(post, "new post");
     if (!post)
-      res.status(200).json({ status: false, result: "Todo Not Found" });
+      res.status(200).json({ status: false, result: "Post Not Found" });
     else res.status(200).json({ status: true, result: post });
   } catch (e) {
     res.status(200).json({ status: false, result: e.message });

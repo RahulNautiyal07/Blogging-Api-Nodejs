@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"email\":\"ram@gmail.com\",\r\n\"password\":\"123@test\"\r\n}",
+							"raw": "{\r\n\"email\":\"rahuln@gmail.com\",\r\n\"password\":\"123@test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -46,7 +46,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"first_name\":\"Ram\",\r\n    \"last_name\":\"Nautiyal\",\r\n    \"email\":\" kris@gmail.com\",\r\n    \"password\":\"123@test\"\r\n}",
+							"raw": "{\r\n    \"first_name\":\"Ram\",\r\n    \"last_name\":\"Nautiyal\",\r\n    \"email\":\" ram@gmail.com\",\r\n    \"password\":\"123@test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -136,7 +136,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/search?search=\"kris\"",
+							"raw": "http://localhost:3000/api/v1/users/search?search=\"ram@\"",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -151,7 +151,7 @@
 							"query": [
 								{
 									"key": "search",
-									"value": "\"kris\""
+									"value": "\"ram@\""
 								}
 							]
 						}
@@ -179,28 +179,6 @@
 								"api",
 								"v1",
 								"todos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create-new-todo",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/api/v1/todos/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"v1",
-								"todos",
-								""
 							]
 						}
 					},
@@ -260,7 +238,7 @@
 					"response": []
 				},
 				{
-					"name": "get-todo",
+					"name": "get-todo-by-id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -288,7 +266,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\":\"Go to market \",\r\n    \"description\":\"Hello market\"\r\n}",
+							"raw": "{\r\n    \"title\":\"Go to mall \",\r\n    \"description\":\"Hello market\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -307,6 +285,29 @@
 								"v1",
 								"todos",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "my-todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/todos/user/my-todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todos",
+								"user",
+								"my-todos"
 							]
 						}
 					},
@@ -345,7 +346,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\":\"1 Rahul admin\",\r\n    \"description\":\"Rahul post 1\"\r\n}",
+							"raw": "{\r\n    \"title\":\"1 Rahul waterfall\",\r\n    \"description\":\"Rahul post 1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -406,7 +407,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/posts/6429d658df2e02b0a8f34f3c",
+							"raw": "http://localhost:3000/api/v1/posts/6429d681df2e02b0a8f34f45",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -416,7 +417,7 @@
 								"api",
 								"v1",
 								"posts",
-								"6429d658df2e02b0a8f34f3c"
+								"6429d681df2e02b0a8f34f45"
 							]
 						}
 					},
