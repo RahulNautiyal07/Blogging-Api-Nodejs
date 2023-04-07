@@ -7,3 +7,58 @@
 {"level":"error","message":"This email is not exists","timestamp":"2023-04-02T21:14:07.062Z"}
 {"level":"error","message":"This email is not exists","timestamp":"2023-04-07T05:08:52.134Z"}
 {"level":"error","message":"Email already exist","timestamp":"2023-04-07T05:18:19.284Z"}
+{"level":"error","message":"Right-hand side of 'instanceof' is not callable","timestamp":"2023-04-07T09:34:33.730Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:44:46.098Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:44:46.197Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:44:46.236Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:44:46.269Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:47:42.858Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:47:42.907Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:47:42.925Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:47:42.941Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:49:31.866Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:49:31.918Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:49:31.940Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:49:31.962Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'time')","timestamp":"2023-04-07T09:50:33.646Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:50:33.690Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:50:33.713Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:50:33.734Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'time')","timestamp":"2023-04-07T09:52:42.981Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:52:43.037Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:52:43.063Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:52:43.085Z"}
+{"level":"error","message":"Email already exist","timestamp":"2023-04-07T09:54:00.935Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'time')","timestamp":"2023-04-07T09:54:27.980Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:54:28.028Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:54:28.049Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:54:28.070Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'time')","timestamp":"2023-04-07T09:55:08.826Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:55:08.872Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:55:08.896Z"}
+{"level":"error","message":"This email is not exists","timestamp":"2023-04-07T09:55:08.920Z"}
+{"level":"error","timestamp":"2023-04-07T10:01:01.687Z"}
+{"level":"error","timestamp":"2023-04-07T10:01:01.739Z"}
+{"level":"error","timestamp":"2023-04-07T10:01:01.760Z"}
+{"level":"error","timestamp":"2023-04-07T10:01:01.781Z"}
+{"level":"error","timestamp":"2023-04-07T10:02:26.671Z"}
+{"level":"error","timestamp":"2023-04-07T10:02:26.720Z"}
+{"level":"error","timestamp":"2023-04-07T10:02:26.750Z"}
+{"level":"error","timestamp":"2023-04-07T10:02:26.775Z"}
+{"level":"error","timestamp":"2023-04-07T10:03:52.857Z"}
+{"level":"error","timestamp":"2023-04-07T10:03:52.916Z"}
+{"level":"error","timestamp":"2023-04-07T10:03:52.944Z"}
+{"level":"error","timestamp":"2023-04-07T10:03:52.971Z"}
+{"level":"error","timestamp":"2023-04-07T10:03:59.068Z"}
+{"level":"error","timestamp":"2023-04-07T10:04:07.937Z"}
+{"level":"error","timestamp":"2023-04-07T10:04:12.484Z"}
+{"level":"error","timestamp":"2023-04-07T10:04:35.786Z"}
+{"level":"error","timestamp":"2023-04-07T10:05:15.419Z"}
+{"level":"error","message":"Email already exist","timestamp":"2023-04-07T10:09:47.047Z"}
+{"level":"error","message":"Email already exist","timestamp":"2023-04-07T10:10:08.310Z"}
+{"level":"error","timestamp":"2023-04-07T10:33:28.647Z"}
+{"level":"error","timestamp":"2023-04-07T10:33:28.698Z"}
+{"level":"error","timestamp":"2023-04-07T10:33:28.747Z"}
+{"level":"error","timestamp":"2023-04-07T10:34:45.661Z"}
+{"level":"error","timestamp":"2023-04-07T10:34:45.682Z"}
+{"level":"error","timestamp":"2023-04-07T10:34:45.702Z"}

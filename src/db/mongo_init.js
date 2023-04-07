@@ -1,6 +1,5 @@
-// let url = "mongodb+srv://rahulnautiyal:123@test@cluster0.neuer.mongodb.net/?retryWrites=true&w=majority";
-const config = require("config");
 const mongoose = require('mongoose');
+const config = require("config");
 const database = config.get("database");
 
 mongoose

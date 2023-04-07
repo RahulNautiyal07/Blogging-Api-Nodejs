@@ -2,7 +2,8 @@
     "port": 3000,
     "database": {
       "name": "blogs",
-      "url": "mongodb://0.0.0.0:27017"
+      "url": "mongodb://0.0.0.0:27017",
+      "cloudUrl": "mongodb+srv://rahulnautiyal:123@test@cluster0.neuer.mongodb.net/?retryWrites=true&w=majority"
     },
     "jwt": {
       "accessToken": {

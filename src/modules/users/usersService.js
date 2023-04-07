@@ -18,7 +18,7 @@ const setCookie = (res, token) => {
 };
 
 
-
+//signUp callback
 const signUp = async (req, res) => {
   try {
     const { first_name, last_name, email, password, role } = req.body;
@@ -38,16 +38,18 @@ const signUp = async (req, res) => {
       setCookie(res, token);
       res.status(201).json({ status: true, data: newUser, accessToken: token });
     } else
-      res.status(200).json({ status: false, error: "Something is missing" });
+      res.status(400).json({ status: false, error: "Something is missing" });
   } catch (e) {
     logger.error(e.message);
     res.status(200).json({ status: false, error: e.message });
   }
 };
 
+// login callback
 const signIn = async (req, res) => {
   try {
     const { email, password } = req.body;
+    
     const user = await User.findOne({ email: email });
     console.log(user);
     if (!user) throw new Error("This email is not exists");
@@ -58,7 +60,7 @@ const signIn = async (req, res) => {
     setCookie(res, token);
     res.status(200).json({ status: true, user: user, token: token });
   } catch (e) {
-    logger.error(e.message);
+    logger.error(e);
     res.status(401).json({ status: false, message: e.message });
   }
 };

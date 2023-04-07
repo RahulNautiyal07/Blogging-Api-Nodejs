@@ -5,11 +5,11 @@
     "url": "mongodb://0.0.0.0:27017"
   },
   "jwt": {
-    "AccessToken": {
+    "accessToken": {
       "secretKey": "my_access_token",
       "time": "48h"
     },
-    "RefreshToken": {
+    "refreshToken": {
       "secretKey": "my_refresh_token",
       "time": "30d"
     }
