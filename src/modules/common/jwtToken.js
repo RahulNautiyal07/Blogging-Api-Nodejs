@@ -37,12 +37,12 @@ const generateRefreshToken = (payload, expiryTime = refreshToken.time) => {
     const options = { expiresIn: expiryTime, issuer: "www.api.com" };
     jwt.sign(payload, secret, options, (err, token) => {
       if (err) return reject(err);
-      client
-        .set(userId, token, { EX: 365 * 24 * 60 * 30 })
-        .then((result) => {
-          if (!result) reject({message: "Token Not Found"});
-          return resolve(token);
-        })
+      client.connect();
+      client.set(userId, token, { EX: 365 * 24 * 60 * 30 }).then((result) => {
+        if (!result) reject({ message: "Token Not Found" });
+        return resolve(token);
+      });
+      client.quit();
     });
   });
 };
@@ -52,14 +52,14 @@ const verifyRefreshToken = (token) => {
     jwt.verify(token, refreshToken.secretKey, (err, payload) => {
       if (err) return reject(err);
       const userId = payload.userId;
-      client
-        .get(userId)
-        .then((result) => {
-          console.log(result,"resuklr")
-          if (!result) return reject(err);
-          if (token === result) return resolve(userId);
-          reject({message: "Unauthorized request, Please Login again."});
-        })
+      client.connect();
+      client.get(userId).then((result) => {
+        console.log(result, "resuklr");
+        if (!result) return reject(err);
+        if (token === result) return resolve(userId);
+        reject({ message: "Unauthorized request, Please Login again." });
+      });
+      client.quit();
     });
   });
 };

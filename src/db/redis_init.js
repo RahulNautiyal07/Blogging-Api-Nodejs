@@ -6,7 +6,7 @@ client.on('connect', () => {
   console.log('Client connected to redis...')
 })
 
-client.connect();
+// client.connect();
 client.on('ready', () => {
   console.log('Client connected to redis and ready to use...')
 })

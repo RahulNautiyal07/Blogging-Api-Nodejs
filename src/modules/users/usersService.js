@@ -43,7 +43,7 @@ const signUp = async (req, res) => {
       const accessToken = await generateAccessToken(payload);
       const refreshToken = await generateRefreshToken(payload);
       setCookie(res, "token", accessToken, 1000 * 60 * 5);
-      setCookie(res, "refresh-token", refreshToken, 1000 * 60 * 60 * 24 * 30);
+      setCookie(res, "refreshToken", refreshToken, 1000 * 60 * 60 * 24 * 30);
       res
         .status(201)
         .json({ status: true, data: newUser, accessToken, refreshToken });
@@ -168,12 +168,12 @@ const logout = async (req, res, next) => {
     let refreshToken = req.cookies.refreshToken;
     if (!refreshToken) throw new Error("Refresh token is missing.");
     const userId = await verifyRefreshToken(refreshToken);
-    // client.connect();
+    client.connect();
     client.del(userId).then((result) => {
       if(!result) throw new Error("Token not found")
       res.status(200).json({ status: true, result: "Logout successfully!" });
     })
-    // client.disconnect();
+    client.quit();
   } catch (e) {
     res.status(200).json({ status: false, result: e.message });
   }
